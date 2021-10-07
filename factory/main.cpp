@@ -18,10 +18,9 @@ int main()
     PlasticFactory pFactory;
     ClayFactory cFactory;
 
-    std::vector<Brick*> b;
-    b = pFactory.getBrick(10);
-    for(auto&e : b)
-        bricks.push_back(new BrickHandler(&(*e)));
+    pFactory.getBrick(10,&bricks);
+
+    cFactory.getBrick(5, &bricks);
     
     for(auto& e: bricks)
             io->draw(e->operator->()->outputBrick());

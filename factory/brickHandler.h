@@ -1,3 +1,6 @@
+#ifndef BRICK_HANDLER_INCLUDE
+#define BRICK_HANDLER_INCLUDE
+
 #include "brick.h"
 
 class BrickHandler
@@ -15,3 +18,4 @@ public:
 private:
     Brick* m_brick;
 };
+#endif

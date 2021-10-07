@@ -2,6 +2,7 @@
 #include "plasticBrick.h"
 #include "clayBrick.h"
 #include "brick.h"
+#include "brickHandler.h"
 #include <vector>
 
 class Factory
@@ -14,7 +15,7 @@ public:
 
     }
 
-    virtual std::vector<Brick*> getBrick(int const& qty) =0;
+    virtual void getBrick(int const& qty, std::vector<BrickHandler*>* t_dest) =0;
 };
 
 class PlasticFactory : public Factory
@@ -27,14 +28,12 @@ public:
 
     }
 
-    virtual std::vector<Brick*> getBrick(int const& qty){
+    virtual void getBrick(int const& qty, std::vector<BrickHandler*>* t_dest){
         std::cout << "Order of Plastic bricks sum of: " << qty <<std::endl;
-        std::vector<Brick*> order;
         for(int i=0; i < qty; ++i)
         {
-            order.push_back(new PlasticBrick());
+            t_dest->push_back(new BrickHandler(new PlasticBrick()));
         }
-        return order;
     };
 };
 
@@ -48,13 +47,11 @@ public:
 
     }
 
-    virtual std::vector<Brick*> getBrick(int const& qty){
+    virtual void getBrick(int const& qty, std::vector<BrickHandler*>* t_dest){
         std::cout << "Order of clay bricks sum of: " << qty <<std::endl;
-        std::vector<Brick*> order;
         for(int i=0; i < qty; ++i)
         {
-            order.push_back(new ClayBrick());
+            t_dest->push_back(new BrickHandler(new ClayBrick()));
         }
-        return order;
     };
 };
